@@ -29,12 +29,16 @@ ob_start();
 
 <table width="100%" border="1" cellspacing="0" cellpadding="5">
     <tr>
-        <td width="30%">Kode_pendaftaran</td>
+        <td width="30%">Kode Pendaftaran</td>
         <td><?= htmlspecialchars($data['kode_pendaftaran']) ?></td>
     </tr>
     <tr>
         <td width="30%">Nama</td>
         <td><?= htmlspecialchars($data['nama']) ?></td>
+    </tr>
+    <tr>
+        <td width="30%">Tanggal Lahir</td>
+        <td><?= htmlspecialchars($data['tgl_lahir']) ?></td>
     </tr>
     <tr>
         <td>Asal Sekolah</td>
@@ -57,8 +61,12 @@ ob_start();
         <td><?= htmlspecialchars($data['jenis_kelamin']) ?></td>
     </tr>
     <tr>
-        <td>Jurusan</td>
-        <td><?= htmlspecialchars($data['jurusan_pertama']) ?>, <?= htmlspecialchars($data['jurusan_kedua']) ?></td>
+        <td>Jurusan Pertama</td>
+        <td><?= htmlspecialchars($data['jurusan_pertama']) ?></td>
+    </tr>
+    <tr>
+        <td>Jurusan Kedua</td>
+        <td><?= htmlspecialchars($data['jurusan_kedua']) ?></td>
     </tr>
     <tr>
         <td>Tanggal Daftar</td>
@@ -71,6 +79,10 @@ ob_start();
     <tr>
         <td>Verifikasi Jurusan</td>
         <td><?= htmlspecialchars($data['verifikasi_jurusan']) ?></td>
+    </tr>
+    <tr>
+        <td>Alamat Siswa</td>
+        <td> <?= htmlspecialchars($data['alamat_siswa']) ?> </td>
     </tr>
 </table>
 

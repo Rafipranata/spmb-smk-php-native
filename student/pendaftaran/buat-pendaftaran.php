@@ -38,7 +38,7 @@ if (!isset($_SESSION['user_id'])) {
       content="width=device-width, initial-scale=1.0, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0"
     />
 
-    <title>Dashboard | SPMB - SMK PGRI 2 TAMAN</title>
+    <title>buat pendaftaran | SPMB - SMK PGRI 2 TAMAN</title>
 
     <meta name="description" content="" />
 
@@ -241,6 +241,12 @@ if (!isset($_SESSION['user_id'])) {
                           <input type="text" name="no_telp" class="form-control" required>
                         </div>
 
+
+                        <div class="mb-3">
+                          <label>Tanggal Lahir</label>
+                          <input type="date" name="tgl_lahir" class="form-control" required>
+                        </div>
+
                         <div class="mb-3">
                           <label>Jenis Kelamin</label>
                           <select name="jenis_kelamin" class="form-select" required>
@@ -289,6 +295,11 @@ if (!isset($_SESSION['user_id'])) {
                           </select>
                         </div>
 
+                        <div class="mb-3">
+                          <label>Alamat Siswa</label>
+                          <textarea name="alamat_siswa" class="form-control" rows="3" required></textarea>
+                        </div>
+
                         <button type="submit" name="simpan" class="btn btn-primary">
                             Simpan
                         </button>
@@ -315,12 +326,14 @@ if (isset($_POST['simpan'])) {
     $nik              = mysqli_real_escape_string($koneksi, $_POST['nik']);
     $email            = mysqli_real_escape_string($koneksi, $_POST['email']);
     $no_telp          = mysqli_real_escape_string($koneksi, $_POST['no_telp']);
+    $tgl_lahir        = mysqli_real_escape_string($koneksi, $_POST['tgl_lahir']);
     $jenis_kelamin    = mysqli_real_escape_string($koneksi, $_POST['jenis_kelamin']);
     $agama            = mysqli_real_escape_string($koneksi, $_POST['agama']);
     $jurusan_pertama  = mysqli_real_escape_string($koneksi, $_POST['jurusan_pertama']);
     $jurusan_kedua    = !empty($_POST['jurusan_kedua'])
                         ? mysqli_real_escape_string($koneksi, $_POST['jurusan_kedua'])
                         : null;
+    $alamat_siswa     = mysqli_real_escape_string($koneksi, $_POST['alamat_siswa']);
 
     // Generate kode pendaftaran 4 digit
     $kode_pendaftaran = str_pad(rand(0, 9999), 4, '0', STR_PAD_LEFT);
@@ -328,11 +341,11 @@ if (isset($_POST['simpan'])) {
     // Query insert
     $query = "
         INSERT INTO pendaftaran
-        (kode_pendaftaran, id_users, nama, asal_sekolah, nis, nik, email, no_telp, jenis_kelamin, agama, jurusan_pertama, jurusan_kedua)
+        (kode_pendaftaran, id_users, nama, asal_sekolah, nis, nik, email, no_telp, tgl_lahir, jenis_kelamin, agama, jurusan_pertama, jurusan_kedua, alamat_siswa)
         VALUES
-        ('$kode_pendaftaran', $id_users, '$nama', '$asal_sekolah', '$nis', '$nik', '$email', '$no_telp',
+        ('$kode_pendaftaran', $id_users, '$nama', '$asal_sekolah', '$nis', '$nik', '$email', '$no_telp', '$tgl_lahir',
          '$jenis_kelamin', '$agama',  '$jurusan_pertama', " . 
-         ($jurusan_kedua ? "'$jurusan_kedua'" : "NULL") . ")
+         ($jurusan_kedua ? "'$jurusan_kedua'" : "NULL") . ", '$alamat_siswa')
     ";
 
     // Eksekusi query
