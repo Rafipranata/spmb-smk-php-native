@@ -209,46 +209,41 @@ if (!isset($_SESSION['user_id'])) {
                     <div class="card-body">
                       <form method="POST">
                         <div class="mb-3">
-                          <label>Nama Siswa</label>
+                          <label>Nama Siswa <span class="text-danger">*</span></label>
                           <input type="text" name="nama" class="form-control" required>
                         </div>
                         <div class="mb-3">
-                          <label>Asal Sekolah</label>
+                          <label>Asal Sekolah <span class="text-danger">*</span></label>
                           <input type="text" name="asal_sekolah" class="form-control" required>
                         </div>
 
                         <div class="mb-3">
-                          <label>NIS</label>
+                          <label>NIS <span class="text-danger">*</span></label>
                           <input type="text" name="nis" class="form-control" required>
                         </div>
 
                         <div class="mb-3">
-                            <label>NIK</label>
-                            <input type="text" name="nik" class="form-control" 
-                                  required 
-                                  pattern="\d{16}" 
-                                  maxlength="16"
-                                  title="NIK harus terdiri dari 16 digit angka">
+                          <label>NIK <span class="text-danger">*</span></label>
+                          <input type="text" name="nik" class="form-control" required pattern="\d{16}" maxlength="16" title="NIK harus terdiri dari 16 digit angka">
                         </div>
 
                         <div class="mb-3">
-                          <label>Email</label>
+                          <label>Email <span class="text-danger">*</span></label>
                           <input type="email" name="email" class="form-control" required>
                         </div>
 
                         <div class="mb-3">
-                          <label>No Telpon</label>
+                          <label>No Telpon <span class="text-danger">*</span></label>
                           <input type="text" name="no_telp" class="form-control" required>
                         </div>
 
-
                         <div class="mb-3">
-                          <label>Tanggal Lahir</label>
+                          <label>Tanggal Lahir <span class="text-danger">*</span></label>
                           <input type="date" name="tgl_lahir" class="form-control" required>
                         </div>
 
                         <div class="mb-3">
-                          <label>Jenis Kelamin</label>
+                          <label>Jenis Kelamin <span class="text-danger">*</span></label>
                           <select name="jenis_kelamin" class="form-select" required>
                             <option value="">Pilih</option>
                             <option value="Laki-laki">Laki-laki</option>
@@ -257,7 +252,7 @@ if (!isset($_SESSION['user_id'])) {
                         </div>
 
                         <div class="mb-3">
-                          <label>Agama</label>
+                          <label>Agama <span class="text-danger">*</span></label>
                           <select name="agama" class="form-select" required>
                             <option value="">Pilih</option>
                             <option>Islam</option>
@@ -270,7 +265,7 @@ if (!isset($_SESSION['user_id'])) {
                         </div>
 
                         <div class="mb-3">
-                          <label>Jurusan Pertama</label>
+                          <label>Jurusan Pertama <span class="text-danger">*</span></label>
                           <select name="jurusan_pertama" class="form-select" required>
                             <option value="">Pilih</option>
                             <option>PPLG</option>
@@ -296,15 +291,15 @@ if (!isset($_SESSION['user_id'])) {
                         </div>
 
                         <div class="mb-3">
-                          <label>Alamat Siswa</label>
+                          <label>Alamat Siswa <span class="text-danger">*</span></label>
                           <textarea name="alamat_siswa" class="form-control" rows="3" required></textarea>
                         </div>
 
                         <button type="submit" name="simpan" class="btn btn-primary">
-                            Simpan
+                          Simpan
                         </button>
-
                       </form>
+
 
                     </div>
                   </div>

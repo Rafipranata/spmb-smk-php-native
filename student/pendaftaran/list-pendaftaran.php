@@ -25,6 +25,20 @@ if (!isset($_SESSION['user_id'])) {
 $id_users = (int) $_SESSION['user_id'];
 $query = "SELECT * FROM pendaftaran WHERE id_users = '$id_users'";
 $result = mysqli_query($koneksi, $query);
+
+$user_id = $_SESSION['user_id'] ?? null;
+$pendaftaran_ada = false;
+
+// Lakukan pengecekan ke database untuk memverifikasi apakah pendaftaran ada
+if ($user_id) {
+    // Query untuk cek apakah pendaftaran ada berdasarkan user_id
+    $query = "SELECT * FROM pendaftaran WHERE id_users = '$user_id'";
+    $result = mysqli_query($koneksi, $query);
+    if (mysqli_num_rows($result) > 0) {
+        $pendaftaran_ada = true;
+    }
+}
+
 ?>
 
 <html
@@ -121,13 +135,13 @@ $result = mysqli_query($koneksi, $query);
                 <div class="card-header d-flex justify-content-between align-items-center">
                     <h5 class="mb-0">Striped rows</h5>
 
-                    <button 
-                        type="button" 
-                        class="btn btn-primary"
-                        onclick="window.open('bukti-pendaftaran.php', '_blank')"
-                    >
-                        Unduh Bukti Pendaftaran
-                    </button>
+                  <button 
+                      type="button" 
+                      class="btn btn-primary" 
+                      onclick="window.open('bukti-pendaftaran.php', '_blank')" 
+                      <?php echo !$pendaftaran_ada ? 'disabled' : ''; ?>>
+                      Unduh Bukti Pendaftaran
+                  </button>
                 </div>
 
                 <div class="table-responsive text-nowrap">
