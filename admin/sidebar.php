@@ -81,7 +81,7 @@
               </a>
             </li>
 
-            <li class="menu-item <?= ($current == 'verifikasi.php') ? 'active' : '' ?>">
+            <li class="menu-item <?= ($current == 'verifikasi.php' || $current == 'edit.php') ? 'active' : '' ?>">
               <a href="verifikasi.php" class="menu-link">
                 <i class="menu-icon tf-icons bx bx-table"></i>
                 <div>Verifikasi Pendaftaran</div>
