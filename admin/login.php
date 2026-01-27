@@ -223,7 +223,7 @@ if (isset($_POST['login'])) {
                 title: 'Gagal',
                 text: 'Email atau password salah'
             }).then(() => {
-                window.location.href = 'sign-in.php';
+                window.location.href = 'login.php';
             });
         </script>";
         exit;
