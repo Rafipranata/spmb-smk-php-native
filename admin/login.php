@@ -208,7 +208,7 @@ if (isset($_POST['login'])) {
                 timer: 1500,
                 showConfirmButton: false
             }).then(() => {
-                window.location.href = 'dashboard.php';
+                window.location.href = 'index.php';
             });
         </script>";
         exit;
