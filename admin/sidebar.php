@@ -57,7 +57,7 @@
                 </svg>
               </span> -->
               <span class="app-brand-text demo menu-text fw-bolder ms-2 text-uppercase">
-                  SPMB
+                  ADMIN SPMB
               </span>
 
             </a>

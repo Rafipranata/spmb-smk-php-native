@@ -151,7 +151,7 @@ $query = "SELECT id, kode_pendaftaran, nama, status, asal_sekolah FROM pendaftar
                         <td><?= htmlspecialchars($row['kode_pendaftaran']) ?></td>
                         <td><strong><?= htmlspecialchars($row['nama']) ?></strong></td>
                         <td>
-                            <span class="badge <?= $row['status'] == 'Diterima' ? 'bg-success' : 'bg-warning' ?>">
+                            <span class="badge <?= $row['status'] == 'Terverifikasi' ? 'bg-success' : 'bg-warning' ?>">
                                 <?= $row['status'] ?>
                             </span>
                         </td>

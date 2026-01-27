@@ -1,6 +1,6 @@
         <aside id="layout-menu" class="layout-menu menu-vertical menu bg-menu-theme">
           <div class="app-brand demo">
-            <a href="index.php" class="app-brand-link">
+            <a href="../index.php" class="app-brand-link">
               <!-- <span class="app-brand-logo demo">
                 <svg
                   width="25"
@@ -72,21 +72,21 @@
           <ul class="menu-inner py-1">
             <!-- Dashboard -->
              <?php
-$current = basename($_SERVER['PHP_SELF']);
-?>
-<li class="menu-item <?= ($current == 'index.php') ? 'active' : '' ?>">
-  <a href="../index.php" class="menu-link">
-    <i class="menu-icon tf-icons bx bx-home-circle"></i>
-    <div>Dashboard</div>
-  </a>
-</li>
+              $current = basename($_SERVER['PHP_SELF']);
+              ?>
+              <li class="menu-item <?= ($current == 'index.php') ? 'active' : '' ?>">
+                <a href="../index.php" class="menu-link">
+                  <i class="menu-icon tf-icons bx bx-home-circle"></i>
+                  <div>Dashboard</div>
+                </a>
+              </li>
 
-<li class="menu-item <?= ($current == 'list-pendaftaran.php') ? 'active' : '' ?>">
-  <a href="pendaftaran/list-pendaftaran.php" class="menu-link">
-    <i class="menu-icon tf-icons bx bx-table"></i>
-    <div>Pendaftaran</div>
-  </a>
-</li>
+              <li class="menu-item <?= ($current == 'list-pendaftaran.php') ? 'active' : '' ?>">
+                <a href="pendaftaran/list-pendaftaran.php" class="menu-link">
+                  <i class="menu-icon tf-icons bx bx-table"></i>
+                  <div>Pendaftaran</div>
+                </a>
+              </li>
 
 
           </ul>

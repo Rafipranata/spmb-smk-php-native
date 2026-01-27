@@ -133,15 +133,15 @@ if ($user_id) {
                 <div class="col-xxl">
               <div class="card">
                 <div class="card-header d-flex justify-content-between align-items-center">
-                    <h5 class="mb-0">Striped rows</h5>
 
-                  <button 
-                      type="button" 
-                      class="btn btn-primary" 
-                      onclick="window.open('bukti-pendaftaran.php', '_blank')" 
-                      <?php echo !$pendaftaran_ada ? 'disabled' : ''; ?>>
-                      Unduh Bukti Pendaftaran
-                  </button>
+            <button 
+                type="button" 
+                class="btn btn-primary" 
+                onclick="window.open('bukti-pendaftaran.php', '_blank')" 
+                <?php echo !$pendaftaran_ada ? 'disabled' : ''; ?>>
+                <i class="bx bx-download me-1"></i>Bukti Pendaftaran
+            </button>
+
                 </div>
 
                 <div class="table-responsive text-nowrap">
@@ -164,7 +164,7 @@ if ($user_id) {
                                 <td><?= htmlspecialchars($row['nis']) ?></td>
                                 <td>
                                     <span class="badge 
-                                        <?= $row['status'] == 'Diterima' ? 'bg-success' : 'bg-warning' ?>">
+                                        <?= $row['status'] == 'Terverifikasi' ? 'bg-success' : 'bg-warning' ?>">
                                         <?= $row['status'] ?>
                                     </span>
                                 </td>

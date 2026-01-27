@@ -141,7 +141,7 @@ if (!$student) {
                       <h5 class="mb-0">Isi Form Pendaftaran</h5>
                     </div>
                     <div class="card-body">
-                        <form method="POST" action="update_student.php">
+                        <form method="POST" action="#">
                             <div class="mb-3">
                                 <label>Nama Siswa <span class="text-danger">*</span></label>
                                 <input type="text" name="nama" class="form-control" value="<?= htmlspecialchars($student['nama']) ?>" required>
@@ -196,28 +196,40 @@ if (!$student) {
                                 </select>
                             </div>
 
-                            <div class="mb-3">
-                                <label>Jurusan Pertama <span class="text-danger">*</span></label>
-                                <select name="jurusan_pertama" class="form-select" required>
-                                    <option value="PPLG" <?= ($student['jurusan_pertama'] == 'PPLG') ? 'selected' : '' ?>>PPLG</option>
-                                    <option value="TJKT" <?= ($student['jurusan_pertama'] == 'TJKT') ? 'selected' : '' ?>>TJKT</option>
-                                    <option value="DKV" <?= ($student['jurusan_pertama'] == 'DKV') ? 'selected' : '' ?>>DKV</option>
-                                    <option value="AKL" <?= ($student['jurusan_pertama'] == 'AKL') ? 'selected' : '' ?>>AKL</option>
-                                    <option value="MPLB" <?= ($student['jurusan_pertama'] == 'MPLB') ? 'selected' : '' ?>>MPLB</option>
-                                    <option value="Tata Kecantikan" <?= ($student['jurusan_pertama'] == 'Tata Kecantikan') ? 'selected' : '' ?>>Tata Kecantikan</option>
-                                </select>
-                            </div>
+                            <div class="row">
+                                <!-- Kolom 1: Status Verifikasi -->
+                                <div class="col-md-4">
+                                    <div class="mb-3">
+                                        <label>Verifikasi Pendaftaran <span class="text-danger">*</span></label>
+                                        <select name="verifikasi_status" class="form-select" required>
+                                            <option value="Terverifikasi" <?= ($student['status'] == 'Terverifikasi') ? 'selected' : '' ?>>Terverifikasi</option>
+                                            <option value="Pending" <?= ($student['status'] == 'Pending') ? 'selected' : '' ?>>Pending</option>
+                                        </select>
+                                    </div>
+                                </div>
 
-                            <div class="mb-3">
-                                <label>Jurusan Kedua</label>
-                                <select name="jurusan_kedua" class="form-select">
-                                    <option value="PPLG" <?= ($student['jurusan_kedua'] == 'PPLG') ? 'selected' : '' ?>>PPLG</option>
-                                    <option value="TJKT" <?= ($student['jurusan_kedua'] == 'TJKT') ? 'selected' : '' ?>>TJKT</option>
-                                    <option value="DKV" <?= ($student['jurusan_kedua'] == 'DKV') ? 'selected' : '' ?>>DKV</option>
-                                    <option value="AKL" <?= ($student['jurusan_kedua'] == 'AKL') ? 'selected' : '' ?>>AKL</option>
-                                    <option value="MPLB" <?= ($student['jurusan_kedua'] == 'MPLB') ? 'selected' : '' ?>>MPLB</option>
-                                    <option value="Tata Kecantikan" <?= ($student['jurusan_kedua'] == 'Tata Kecantikan') ? 'selected' : '' ?>>Tata Kecantikan</option>
-                                </select>
+                                <!-- Kolom 2: Verifikasi Jurusan Pertama -->
+                                <div class="col-md-4">
+                                    <div class="mb-3">
+                                        <label>Verifikasi Jurusan <span class="text-danger">*</span></label>
+                                        <select name="verifikasi_jurusan" class="form-select" required>
+                                            <option value="PPLG" <?= ($student['jurusan_pertama'] == 'PPLG') ? 'selected' : '' ?>>PPLG</option>
+                                            <option value="TJKT" <?= ($student['jurusan_pertama'] == 'TJKT') ? 'selected' : '' ?>>TJKT</option>
+                                            <option value="DKV" <?= ($student['jurusan_pertama'] == 'DKV') ? 'selected' : '' ?>>DKV</option>
+                                            <option value="AKL" <?= ($student['jurusan_pertama'] == 'AKL') ? 'selected' : '' ?>>AKL</option>
+                                            <option value="MPLB" <?= ($student['jurusan_pertama'] == 'MPLB') ? 'selected' : '' ?>>MPLB</option>
+                                            <option value="Tata Kecantikan" <?= ($student['jurusan_pertama'] == 'Tata Kecantikan') ? 'selected' : '' ?>>Tata Kecantikan</option>
+                                        </select>
+                                    </div>
+                                </div>
+
+                                <!-- Kolom 3: Verifikasi Jurusan yang Dipilih -->
+                                <div class="col-md-4">
+                                    <div class="mb-3">
+                                        <label>Jurusan yang Dipilih</label>
+                                        <input type="text" class="form-control" value="<?= $student['jurusan_pertama'] ?> / <?= $student['jurusan_kedua'] ?>" readonly>
+                                    </div>
+                                </div>
                             </div>
 
                             <div class="mb-3">
@@ -229,6 +241,51 @@ if (!$student) {
                                 Simpan
                             </button>
                         </form>
+                            <?php
+                            // Cek apakah form disubmit
+                            if (isset($_POST['simpan'])) {
+                                // Mengambil data dari form
+                                $verifikasi_status = $_POST['verifikasi_status'];
+                                $verifikasi_jurusan = $_POST['verifikasi_jurusan'];
+                                
+
+                                // Update data ke database
+                                $query = "UPDATE pendaftaran SET status = '$verifikasi_status', verifikasi_jurusan = '$verifikasi_jurusan' WHERE id = '$student_id'";
+                                $result = mysqli_query($koneksi, $query);
+                                if ($result) {
+                                echo '
+                                <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+                                <script>
+                                    Swal.fire({
+                                        icon: "success",
+                                        title: "Terverifikasi",
+                                        text: "Data pendaftaran berhasil terverifikasi!",
+                                        timer: 2000,
+                                        showConfirmButton: false
+                                    }).then(() => {
+                                        window.location.href = "verifikasi.php";
+                                    });
+                                </script>
+                                ';
+                            } else {
+                                // Jika gagal, tampilkan error dengan SweetAlert
+                                $error = mysqli_error($koneksi);
+                                echo '
+                                <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+                                <script>
+                                    Swal.fire({
+                                        icon: "error",
+                                        title: "Gagal",
+                                        text: "'.$error.'",
+                                        showConfirmButton: true
+                                    });
+                                </script>
+                                ';
+                            }
+                            };
+
+                            ?>
+
                     </div>
                   </div>
                 </div>
