@@ -127,7 +127,12 @@ $query = "SELECT id, kode_pendaftaran, nama, status, asal_sekolah FROM pendaftar
                 <div class="col-xxl">
               <div class="card">
                 <div class="card-header d-flex justify-content-between align-items-center">
-                    <h5 class="mb-0">Striped rows</h5>
+                                <button 
+                type="button" 
+                class="btn btn-success" 
+                onclick="window.open('export_excel.php', '_blank')">
+                <i class="bx bx-download me-1"></i>Export Excel
+            </button>
 
                 </div>
 
