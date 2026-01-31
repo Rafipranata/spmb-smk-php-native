@@ -346,6 +346,8 @@ if (isset($_POST['simpan'])) {
     // Eksekusi query
 if (mysqli_query($koneksi, $query)) {
     // Jika berhasil, tampilkan SweetAlert dan redirect
+    $id_siswa = mysqli_insert_id($koneksi);
+
     echo '
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <script>
@@ -356,7 +358,7 @@ if (mysqli_query($koneksi, $query)) {
             timer: 2000,
             showConfirmButton: false
         }).then(() => {
-            window.location.href = "list-pendaftaran.php";
+            window.location.href = "data-ortu.php?id_siswa=' . $id_siswa . '";
         });
     </script>
     ';

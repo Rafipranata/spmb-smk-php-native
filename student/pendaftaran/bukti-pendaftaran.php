@@ -24,7 +24,31 @@ $mpdf = new Mpdf([
 ]);
 
 ob_start();
+
+function formatGajiRange($gaji) {
+
+    // kasus <500000 atau >5000000
+    if (str_contains($gaji, '<')) {
+        return '< Rp 500.000';
+    }
+
+    if (str_contains($gaji, '>')) {
+        return '> Rp 5.000.000';
+    }
+
+    // kasus range 3000000-4000000
+    if (str_contains($gaji, '-')) {
+        [$min, $max] = explode('-', $gaji);
+        return 'Rp ' . number_format($min, 0, ',', '.') .
+               ' – Rp ' . number_format($max, 0, ',', '.');
+    }
+
+    // fallback kalau angka tunggal
+    return 'Rp ' . number_format((int)$gaji, 0, ',', '.');
+}
 ?>
+
+
 <h3 align="center">BUKTI PENDAFTARAN</h3>
 
 <table width="100%" border="1" cellspacing="0" cellpadding="5">
@@ -84,6 +108,32 @@ ob_start();
         <td>Alamat Siswa</td>
         <td> <?= htmlspecialchars($data['alamat_siswa']) ?> </td>
     </tr>
+</table>
+
+<h3 align="center">Data Orang Tua Siswa</h3>
+
+<table width="100%" border="1" cellspacing="0" cellpadding="5">
+    <tr>
+        <td width="30%">Nama Ayah</td>
+        <td><?= htmlspecialchars($data['nama_ayah']) ?></td>
+    </tr>
+    <tr>
+        <td width="30%">Nama Ibu</td>
+        <td><?= htmlspecialchars($data['nama_ibu']) ?></td>
+    </tr>
+    <tr>
+        <td>Pekerjaan Ayah</td>
+        <td><?= htmlspecialchars($data['pekerjaan_ayah']) ?></td>
+    </tr>
+    <tr>
+        <td>Pekerjaan Ibu</td>
+        <td><?= htmlspecialchars($data['pekerjaan_ibu']) ?></td>
+    </tr>
+    <tr>
+        <td>Gaji Orang Tua</td>
+        <td><?= formatGajiRange($data['gaji_ortu']) ?>
+    </td>
+
 </table>
 
 <?php
